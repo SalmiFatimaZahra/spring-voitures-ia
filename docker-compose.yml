@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mariadb
+    ports:
+      - "3307:3306"
+    environment:
+      MARIADB_DATABASE: compagnie
+      MARIADB_ROOT_PASSWORD: root
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - spring-net
+
+  app:
+    container_name: app
+    build: .
+    ports:
+      - "9090:8082"
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_PORT: 3306
+    depends_on:
+      - mysqldb
+    networks:
+      - spring-net
+
+volumes:
+  mariadb_data:
+
+networks:
+  spring-net:
