@@ -8,6 +8,7 @@ import Bienvenue from './Components/Bienvenue';
 import Footer from './Components/Footer';
 import Voiture from './Components/Voiture';
 import VoitureListe from './Components/VoitureListe';
+import AssistantIA from './Components/AssistantIA';
 
 function App() {
   const marginTop = {
@@ -25,6 +26,7 @@ function App() {
               <Route path="/add" element={<Voiture />} />
               <Route path="/edit/:id" element={<Voiture />} />
               <Route path="/list" element={<VoitureListe />} />
+              <Route path="/ai" element={<AssistantIA />} />
             </Routes>
           </Col>
         </Row>

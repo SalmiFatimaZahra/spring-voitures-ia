@@ -1,9 +1,8 @@
-version: "3.8"
-
 services:
   mysqldb:
     container_name: mysqldb
     image: mariadb
+    restart: always
     ports:
       - "3307:3306"
     environment:
@@ -11,26 +10,32 @@ services:
       MARIADB_ROOT_PASSWORD: root
     volumes:
       - mariadb_data:/var/lib/mysql
-    networks:
-      - spring-net
+
+  ollama:
+    container_name: ollama
+    image: ollama/ollama
+    restart: always
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
 
   app:
     container_name: app
     build: .
+    restart: always
     ports:
       - "9090:8082"
+    depends_on:
+      - mysqldb
+      - ollama
     environment:
       MYSQL_HOST: mysqldb
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_PORT: 3306
-    depends_on:
-      - mysqldb
-    networks:
-      - spring-net
+      OLLAMA_BASE_URL: http://ollama:11434
 
 volumes:
   mariadb_data:
-
-networks:
-  spring-net:
+  ollama_data:

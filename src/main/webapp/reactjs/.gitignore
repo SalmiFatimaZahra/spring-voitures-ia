@@ -1,23 +1,42 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Backend Spring Boot
+target/
+*.jar
+*.war
+*.ear
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
 
-# testing
-/coverage
+# Maven
+.mvn/wrapper/maven-wrapper.jar
 
-# production
-/build
+# Logs
+*.log
 
-# misc
-.DS_Store
+# Frontend React dependencies
+src/main/webapp/reactjs/node_modules/
+src/main/webapp/reactjs/build/
+
+# React generic
+node_modules/
+build/
+coverage/
+
+# Environment files
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# OS files
+.DS_Store
+Thumbs.db
+
+# NPM/Yarn logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
