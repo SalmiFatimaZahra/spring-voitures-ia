@@ -22,6 +22,7 @@ public class SpringDataRestApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringDataRestApplication.class, args);
     }
+/*
 
     @Bean
     CommandLineRunner runner() {
@@ -37,4 +38,5 @@ public class SpringDataRestApplication {
             voitureRepo.save(new Voiture("Honda", "CRV", "Bleu", "A-3-7090", 2016, 140000, proprietaire2));
         };
     }
+*/
 }

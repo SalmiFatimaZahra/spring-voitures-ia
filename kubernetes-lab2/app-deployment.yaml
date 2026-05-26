@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springdatarest-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: springdatarest
+  template:
+    metadata:
+      labels:
+        app: springdatarest
+    spec:
+      containers:
+        - name: springdatarest
+          image: springdatarest-k8s:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+          env:
+            - name: MYSQL_HOST
+              value: mysql
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASSWORD
+              value: Nifo23Lifo05
+            - name: OLLAMA_BASE_URL
+              value: http://host.minikube.internal:11434
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springdatarest-svc
+spec:
+  selector:
+    app: springdatarest
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+  type: NodePort
